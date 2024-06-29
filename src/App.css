@@ -5,7 +5,9 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-
+.resize-observer-container {
+  contain: layout size;
+}
 .App {
   text-align: center;
 }

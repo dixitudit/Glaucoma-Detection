@@ -6,6 +6,7 @@ import About from './components/About';
 import Diagnosis from './components/Diagnosis';
 import Results from './components/Results';
 import './App.css';
+import ResizableComponent from './components/ResizableComponent';
 
 function App() {
   return (
