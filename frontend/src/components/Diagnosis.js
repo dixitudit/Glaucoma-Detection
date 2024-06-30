@@ -36,10 +36,14 @@ function Diagnosis() {
 
       if (!tokenResponse.ok) {
         throw new Error('Failed to fetch token');
+      }else{
+        console.log("tokenResponse",tokenResponse);
       }
 
       const tokenData = await tokenResponse.json();
       const accessToken = tokenData.access_token;
+
+      // console.log("accessToken",accessToken);
 
       const payload = {
         input_data: [
@@ -59,6 +63,8 @@ function Diagnosis() {
         ],
       };
 
+      // console.log("payload",payload);
+
       const scoringResponse = await fetch('http://localhost:5000/api/predict', {
         method: 'POST',
         headers: {
@@ -71,7 +77,11 @@ function Diagnosis() {
       });
 
       if (!scoringResponse.ok) {
+        console.log("scoringResponse error is",scoringResponse);
         throw new Error('Failed to fetch prediction');
+      }
+      else{
+        console.log("scoringResponse ye ara h",scoringResponse); 
       }
 
       const scoringData = await scoringResponse.json();

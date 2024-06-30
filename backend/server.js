@@ -5,8 +5,8 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const API_KEY = "ggONZebDvHTza9V2_tZ0i0_9at0rVNlK2vnRsOIoQ5LT";
-const SCORING_URL = "https://us-south.ml.cloud.ibm.com/ml/v4/deployments/dataset/predictions?version=2021-05-01";
+const API_KEY = "Fw6DtFr-nQwIBSUxlGXxy0yD-iTA_N6S2jaXMdlRGPuA";
+const SCORING_URL = "https://private.us-south.ml.cloud.ibm.com/ml/v4/deployments/b3eaf755-08fb-4e7f-9e2b-f7959cbf92ed/predictions?version=2021-05-01 ";
 
 app.use(cors());
 app.use(express.json());
