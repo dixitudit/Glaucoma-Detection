@@ -16,6 +16,7 @@ function Diagnosis() {
   const [prediction, setPrediction] = useState(null);
 
   const handleChange = (e) => {
+    setPrediction(null);
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -70,12 +71,18 @@ function Diagnosis() {
         }),
       });
 
+      const scoringData = await scoringResponse.json();
+
       if (!scoringResponse.ok) {
-        throw new Error('Failed to fetch prediction');
+        throw new Error('Failed to fetch prediction'+ scoringData.error);
       }
 
-      const scoringData = await scoringResponse.json();
-      setPrediction(scoringData);
+      let isGlaucoma = scoringData.predictions[0].values[0][0];
+      if (isGlaucoma === 0) {
+        setPrediction(`You do not have Glaucoma. Probability:  ${scoringData.predictions[0].values[0][1][1]*100}`);
+      } else {
+        setPrediction(`You may have Glaucoma. Probability:  ${scoringData.predictions[0].values[0][1][1]*100}`);
+      }
     } catch (error) {
       console.error('Error:', error);
       setPrediction({ error: error.message });
@@ -165,7 +172,7 @@ function Diagnosis() {
           {prediction.error ? (
             <p>Error: {prediction.error}</p>
           ) : (
-            <pre>{JSON.stringify(prediction, null, 2)}</pre>
+            <pre>{prediction}</pre>
           )}
         </div>
       )}
