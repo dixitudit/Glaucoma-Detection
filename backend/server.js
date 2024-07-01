@@ -11,7 +11,7 @@ const SCORING_URL = "https://us-south.ml.cloud.ibm.com/ml/v4/deployments/dataset
 app.use(cors());
 app.use(express.json());
 
-app.post('/api/token', async (req, res) => {
+app.get('/api/token', async (req, res) => {
   try {
     const response = await axios.post('https://iam.cloud.ibm.com/identity/token', `grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=${API_KEY}`, {
       headers: {
