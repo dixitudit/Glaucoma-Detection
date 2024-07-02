@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 require('dotenv').config();
-
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -11,7 +11,6 @@ const SCORING_URL = process.env.SCORE_URL;
 
 app.use(cors());
 app.use(express.json());
-
 app.get('/api/token', async (req, res) => {
   try {
     const response = await axios.post('https://iam.cloud.ibm.com/identity/token', `grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=${API_KEY}`, {
@@ -43,6 +42,12 @@ app.post('/api/predict', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+});
+
+
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
 
 app.listen(PORT, () => {
