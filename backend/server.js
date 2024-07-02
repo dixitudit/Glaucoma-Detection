@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 const API_KEY = process.env.IBM_API_KEY;
 
-const SCORING_URL = process.env.SCORE_URL;
+const SCORING_URL = process.env.IBM_URL;
 
 
 app.use(cors());
