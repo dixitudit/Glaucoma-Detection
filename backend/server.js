@@ -7,10 +7,9 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const API_KEY = process.env.IBM_API_KEY;
+const API_KEY = process.env.IBM_API_KEY_2;
 
 const SCORING_URL = process.env.IBM_URL;
-
 
 app.use(cors());
 app.use(express.json());
@@ -25,6 +24,7 @@ app.get('/api/token', async (req, res) => {
 
     res.json(response.data);
   } catch (error) {
+    console.log("error",error.message);
     res.status(500).json({ error: error.message });
   }
 });

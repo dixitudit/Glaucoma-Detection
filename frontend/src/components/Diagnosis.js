@@ -28,7 +28,7 @@ function Diagnosis() {
     e.preventDefault();
 
     try {
-      const tokenResponse = await fetch('http://localhost:5000/api/token', {
+      const tokenResponse = await fetch('/api/token', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -37,8 +37,6 @@ function Diagnosis() {
 
       if (!tokenResponse.ok) {
         throw new Error('Failed to fetch token');
-      }else{
-        console.log("tokenResponse",tokenResponse);
       }
 
       const tokenData = await tokenResponse.json();
@@ -66,7 +64,7 @@ function Diagnosis() {
 
       // console.log("payload",payload);
 
-      const scoringResponse = await fetch('http://localhost:5000/api/predict', {
+      const scoringResponse = await fetch('/api/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
